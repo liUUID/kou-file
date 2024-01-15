@@ -23,7 +23,7 @@
 - 数据库：MySQL 8.0
 - 权限安全控制：Sa-Token
 - 本地缓存：Ehcache
-- 文件上传：本地、七牛云、阿里云OSS
+- 文件上传：本地、七牛云、阿里云OSS 、 minio（暂时没有实现）
 - 第三方登录：JustAuth
 - 模板渲染：Thymeleaf
 -
