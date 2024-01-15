@@ -8,6 +8,7 @@ import com.free.fs.model.FilePojo;
 import lombok.SneakyThrows;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.env.Environment;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -34,9 +35,15 @@ public class LocalTemplate {
         if (!folder.isDirectory()) {
             folder.mkdirs();
         }
-        final File file1 = new File (folder + CommonConstant.DIR_SPLIT + pojo.getFileName ());
+        String path = folder + CommonConstant.DIR_SPLIT + pojo.getFileName ();
+        File file2 = new File(path);
+        if (!file2.isDirectory()) {
+            folder.mkdirs();
+        }
+//        final File file1 = new File (folder + CommonConstant.DIR_SPLIT + pojo.getFileName ());
+        FileCopyUtils.copy(file.getBytes(), file2);
         //保存文件
-        file.transferTo(file1);
+//        file.transferTo(file2);
         // 返回上传文件的访问路径
         String url = getServerUrl() + localProperties.getUploadMapping() + CommonConstant.DIR_SPLIT + pojo.getFileName();
         pojo.setUrl(url);
